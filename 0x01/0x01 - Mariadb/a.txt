@@ -1,0 +1,7 @@
+mysql -u ctf -p -h csie.ctf.tw -P 10126
+ctf
+show databases;
+use CTF
+show tables;
+select * from Account;
+| 265 | FLAG        | Rememberedi_by_the_Lord    |

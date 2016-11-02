@@ -1,0 +1,4 @@
+login with guest/guest
+set cookie "show_hidden" to "yes"
+F5
+found FLAG in".good.job.here.is.your.hidden.flag-1.txt"

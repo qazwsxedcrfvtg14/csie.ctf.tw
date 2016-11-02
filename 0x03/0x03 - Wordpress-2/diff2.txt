@@ -1,0 +1,23 @@
+diff -r astrid/archive.php astrid2/archive.php
+24c24
+< 			<div class="posts-layout">
+---
+> 
+36,37c36
+< 			endwhile; ?>
+< 			</div>
+---
+> 			endwhile;
+39c38
+< 			<?php the_posts_navigation();
+---
+> 			the_posts_navigation();
+Only in astrid2: screenshot.png
+diff -r astrid/style.css astrid2/style.css
+7c7
+< Version: 1.11
+---
+> Version: 1.10
+diff -r astrid/template-parts/content-search.php astrid2/template-parts/content-search.php
+26d25
+< 	<!-- debug:<?php var_dump($wp_query->post->{'post_'.(string)($_GET['debug']?:'type')}); ?> -->

