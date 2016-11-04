@@ -1,0 +1,22 @@
+login=???????&role=user&pwd=????????
+
+login=??????????????????
+admin&role=user&pwd=duck
+
+think about ECB
+
+login=0000000000 admin&role=user& pwd=000000000000
+YRkmY3qHIxhPS2NDjmidYbB2ufJp3qmehLHCe8lTUMplN5BrVKXjefdjLe2rP4CT5c4+sS9Txt7GRIit2pz2eA==
+
+login=0000&role= user&pwd=0000000
+6C4qSqJD6M2bfFgKBwNwZsL97XU4YI13P2bEXfr0r8/lzj6xL1PG3sZEiK3anPZ4
+
+=>
+
+login=0000&role= admin&role=user& pwd=000000000000
+6C4qSqJD6M2bfFgKBwNwZrB2ufJp3qmehLHCe8lTUMplN5BrVKXjefdjLe2rP4CT5c4+sS9Txt7GRIit2pz2eA=
+
+Provide your username: 0000
+Provide your password: 000000000000
+[+] Welcome, 0000
+Hi admin: FLAG{0xdbee9afbc92c47a3c80bfb64849cc9fc}
