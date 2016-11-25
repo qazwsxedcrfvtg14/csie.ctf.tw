@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define f first
+#define s second
+typedef pair<char,int>par;
+int ar[]={0x0000134C,0x00001207,0x0000221D,0x00003741,0x0000348F,0x00002FFD,0x0000289B,0x0000289B,0x00002904,0x00002774,0x00000CA0,0x00000C80,0x00002B5C,0x00002BCB,0x00002D5F,0x0000316A,0x000010C2,0x000011AC,0x00000E80,0x00000E60,0x00003084,0x00002ED4,0x0000332A,0x00002E8E,0x00000CA0,0x00000E00,0x000031E0,0x0000316E,0x00002A7E,0x00002958,0x00002A9C,0x00002B01,0x000012BC,0x00000580,0x00000C40,0x00002CCA,0x00003504,0x00000E80,0x00000E00,0x00002F40,0x000028EC,0x00002DD9,0x000031A1,0x00002D1E,0x00002C42,0x00000CE0,0x00000C80,0x00002774,0x00002645,0x000025E4,0x00000C80,0x00000C80,0x00002B5C,0x00002BCB,0x00002D5F,0x000014AA,0x00001676};
+int main(){
+    /*string s[4];
+    while(true){
+        for(int i=0;i<4;i++)
+            cin>>s[i];
+        cout<<",0x";
+        for(int i=0;i<4;i++)
+            cout<<s[3-i];
+        }*/
+    int cnt=0x000014C8;
+    cout<<"FL";
+    queue<char>q;
+    q.push('F');
+    q.push('L');
+    for(int x:ar){
+        cnt/=q.front();
+        q.pop();
+        q.push(x/cnt);
+        putchar(x/cnt);
+        cnt=x;
+        }
+	return 0;
+    }
