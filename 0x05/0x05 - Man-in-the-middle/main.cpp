@@ -94,10 +94,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     int argc=__argc; char** argv=__argv;
     #pragma GCC diagnostic pop
     Setup();
-
+    Thread t[16];
     for(int k=0;k<16;k++)
-        run(k);
-
+        t[k]=ThreadCreate(run,k),Sleep(100);
+    for(int k=0;k<16;k++)
+        Wait(t[k]);
     for(int k=0;k<16;k++)
         printf("%d ",key[k]);
     puts("");
